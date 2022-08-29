@@ -41,24 +41,24 @@
     <!-- END OF SITE LOGO -->
     
     <!-- SEARCH BAR MAIN SECTION -->
-    <div class="flex rounded-full shadow-xl m-auto"  id="search-bar">
-      <input type="text" class="h-10 p-6 pl-4 text-white search-query" placeholder="Search IMDB">
-      <div class="bg-sky-700 search-btn flex justify-center items-center">
+    <div class="flex shadow-xl m-auto"  id="search-bar">
+      <input type="search" class="h-10 p-6 pl-4 text-white search-query" id="movie-search-box" placeholder="Search IMDB" onclick = "findMovies()">
+      <div class="bg-sky-700 search-btn flex justify-center items-center search-btn">
         <i class="fa-solid fa-magnifying-glass text-lg block"></i>
       </div>
     </div>
     <!-- END OF SEARCH BAR MAIN SECTION -->
   </main>
 
-  <main class="flex justify-center items-center fav-tiles mt-10">
+  <!-- <main class="flex justify-center items-center fav-tiles mt-10">
     <div class="text-3xl order-last font-extralight hover:shadow-md hover:bg-black hover:rounded-md">
       +
     </div>
-  </main>
+  </main> -->
 
   <!-- SEARCH RESULT BOX -->
-  <!-- <div id="search-list-item-res" class="order-2 rounded shadow-md">
-    <div class="search-list-item">
+  <div id="search-list" class="order-2 shadow-xl search-list">
+    <!-- <div class="search-list-item">
       <div class="search-item-thumbnail shadow-md">
         <img class="rounded" src="https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_FMjpg_UX1000_.jpg" alt="">
       </div>
@@ -67,8 +67,8 @@
         <p>2002</p>
         <p>Tobey Marguire, Kristen Dunst</p>
       </div>
-    </div>
-  </div> -->
+    </div> -->
+  </div>
 <!-- END OF SEARCH RESULT BOX -->
 
 
@@ -96,20 +96,27 @@
   </header> -->
 
   <!-- MOVIE DETAILS PAGE -->
-  <!-- <section class="flex bg-black">
+  <section class="flex">
     <div id="movie-image">
       <img src="https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_FMjpg_UX1000_.jpg" class="rounded shadow-2xl" alt="">
     </div>
     <div id="movie-info">
-      <h1>Spider-man</h1>
+      <div class="flex w-56 justify-between items-center">
+        <h1>Spider-man</h1>
+        <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
+      </div>
       <p>Year: 2017 &nbsp;<span class=" bg-yellow-500 p-1 rounded">Rating: PG-13</span> &nbsp;Released: 05 May 2017</p>
-      <p class="rounded bg-slate-800 p-1.5 w-fit"><span>Genere:</span> Action, Adventure, Fantasy</p>
+      <p class="rounded bg-zinc-700 p-1.5 w-fit"><span>Genere:</span> Action, Adventure, Fantasy</p>
       <p><span>Writer:</span> Sam Raimi</p>
       <p><span>Actors:</span> Tobey Maguire</p>
       <p><span>Plot:</span> When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy befalls his family.</p>
       <p class="italic mv-lang"><span>Language: </span>English, Spanish</p>
       <p><span><i class="fa-solid fa-award"></i></span>&nbsp;&nbsp;  Won 3 Oscars, 89 wins & 131 nominations total</p>
     </div>
-  </section> -->
+  </section>
+
+  <script src="searchBarInteraction.js"></script>
+  <script src="favButtonInteraction.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

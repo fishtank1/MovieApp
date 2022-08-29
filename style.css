@@ -11,6 +11,8 @@ body {
     /* background: url("https://occ-0-4995-2186.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABTfvtY6NptM7gnUyzFDCvkz5Rwq9c0CXpe3SPg9VOZIPoVJ2JHYsqY-zYD0dDjiGKT5EheuXBKKxPYb_uqRl1ETnY-Xry7jUcHeJ.jpg?r=cb"); */
 }
 
+/* START OF NAV BAR STYLE */
+
 nav {
     height: 80px;
     display: flex;
@@ -18,7 +20,9 @@ nav {
     justify-content: space-between;
 }
 
-/* SEARCH SETTINGS */
+/* END OF NAV BAR STYLE */
+
+/* START OF SEARCH SETTINGS */
 #search-bar {
     width: 778.237px;
 }
@@ -54,45 +58,44 @@ nav {
     width: 300px;
 }
 
-/* RESPONSIVE BREAK FOR SEARCH BAR */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-    #search-bar {
-        width: 350px;
-    }
+/* END OF SEARCH SETTINGS */
 
-    .greeting-message {
-        display: none;
-    }
+
+/* START OF SEARCH RESULT SUGGESTIONS */
+#search-list {
+    display: none;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
+/* END OF SEARCH RESULT SUGGESTIONS */
 
-/* START OF FAV TILES */
+/* START OF FAV TILES SETTINGS */
 .fav-tiles div {
     margin: auto;
     padding: 30px 50px;
     align-items: center;
     justify-content: center;
 }
+/* END OF FAV TILES SETTINGS */
 
-/* MOVIE INFO */
+/* START OF MOVIE INFO SETTINGS */
 section {
     height: 100vh;
     align-items: center;
+    flex-direction: row;
     justify-content: center;
 }
 
 #movie-image img {
     width: 300px;
-    height: 400px;
-    margin: 0 100px;
+    height: 450px;
+    margin-left: 50px;
+    margin-right: 100px;
     border: 5px solid white;
 }
 
 #movie-info {
-    width: 30%;
+    width: 25%;
     color: white;
     /* margin-bottom: 50px; */
 }
@@ -103,6 +106,12 @@ section {
     font-weight: bold;
     font-size: xx-large;
     margin-bottom: 20px;
+}
+
+.heart {
+    cursor:pointer;
+    color: white;
+    padding-bottom: 12px;
 }
 
 #movie-info p {
@@ -126,6 +135,50 @@ p span {
 #movie-info p:last-child {
     opacity: 0.7;
 }
+
+/* END OF MOVIE INFO SETTINGS */
+
+
+/* MEDIA QUERIES FOR SMALL SCREENS */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    #search-bar {
+        width: 350px;
+    }
+
+    .greeting-message {
+        display: none;
+    }
+
+    section {
+        margin-top: 200px;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    #movie-image {
+        margin-bottom: 40px;
+    }
+
+    #movie-image img {
+        width: 200px;
+        height: 300px;
+        margin: 0 100px;
+        border: 5px solid white;
+    }
+
+    #movie-info h1 {
+        text-align: center;
+    }
+
+    #movie-info {
+        width: 80%;
+    }
+}
+
 
 /* 
 
