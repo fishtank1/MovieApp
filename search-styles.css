@@ -1,10 +1,10 @@
 #search-list {
     width: 778.237px;
     margin: 0 auto;
-    /* top: 4.5%;
-    left: 628px; */
+    /* top: 4.5%; comment
+    left: 628px; comment */
     z-index: 10;
-    /* position: fixed; */
+    /* position: fixed; comment */
     max-height: 500px;
     overflow-y: scroll;
     border-bottom-left-radius: 25px;
@@ -48,7 +48,8 @@
 }
 
 .search-item-info h3 {
-    font-size: large;
+    font-size: larger;
+    font-weight: bold;
 }
 
 .search-item-info > p {
@@ -56,8 +57,12 @@
     font-weight: 600;
 }
 
-/* @media(max-width: 450px) {
-    .logo p {
-
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    #search-list {
+        width: 350px;
     }
-} */
+  }

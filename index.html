@@ -42,12 +42,16 @@
     
     <!-- SEARCH BAR MAIN SECTION -->
     <div class="flex shadow-xl m-auto"  id="search-bar">
-      <input type="search" class="h-10 p-6 pl-4 text-white search-query" id="movie-search-box" placeholder="Search IMDB" onclick = "findMovies()">
+      <input type="search" class="h-10 p-6 pl-4 text-white search-query" placeholder="Search IMDB" id="movie-search-box" onkeyup="findMovies()">
       <div class="bg-sky-700 search-btn flex justify-center items-center search-btn">
         <i class="fa-solid fa-magnifying-glass text-lg block"></i>
       </div>
     </div>
     <!-- END OF SEARCH BAR MAIN SECTION -->
+
+    <div class = "search-list shadow-xl" id = "search-list">
+      <!-- list here -->
+    </div>
   </main>
 
   <!-- <main class="flex justify-center items-center fav-tiles mt-10">
@@ -55,45 +59,6 @@
       +
     </div>
   </main> -->
-
-  <!-- SEARCH RESULT BOX -->
-  <div id="search-list" class="order-2 shadow-xl search-list">
-    <!-- <div class="search-list-item">
-      <div class="search-item-thumbnail shadow-md">
-        <img class="rounded" src="https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_FMjpg_UX1000_.jpg" alt="">
-      </div>
-      <div class="search-item-info"> 
-        <h3>Spiderman</h3>
-        <p>2002</p>
-        <p>Tobey Marguire, Kristen Dunst</p>
-      </div>
-    </div> -->
-  </div>
-<!-- END OF SEARCH RESULT BOX -->
-
-
-
-
-
-  <!-- POSTER DEATAILS
-    <header class="flex">
-    <div>
-      <img src="https://occ-0-4995-2186.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABb-UpmYTtrGdTsouBBn7c4Lbldr9weTG1Z5C7hmnYARuZFPEZpr4Hk7glwUOglFBw_EyYhWe52CEylRmxPRSFDXNykofDT1-IX4ZZf_YjfqO.png?r=030" id="trend-img" alt="">
-      <p class="text-white header-txt">Burdened by old demons, a troubled but brilliant detective sets out to solve two confounding abduction cases - one involving his own girlfriend.</p>
-      <div class="flex">
-        <button class="flex justify-center items-center rounded text-white btn-tr" id="play">
-          <i class="fa-solid fa-play btn-icn"></i>
-          <p class="ml-2 header-btn-txt">Play</p>
-        </button>
-        
-        <button class="flex justify-center items-center rounded text-white btn-tr" id="info">
-          <i class="fa-solid fa-circle-info btn-icn"></i>
-          <p class="ml-2 header-btn-txt">More Info</p>
-        </button>
-      </div>
-    </div>
-    <div></div>
-  </header> -->
 
   <!-- MOVIE DETAILS PAGE -->
   <section class="flex">
@@ -115,8 +80,8 @@
     </div>
   </section>
 
+  <script src="script.js"></script>
   <script src="searchBarInteraction.js"></script>
   <script src="favButtonInteraction.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
