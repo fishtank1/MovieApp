@@ -38,9 +38,10 @@
 }
 
 .search-item-info {
+    width: 90%;
     display: flex;
-    flex-wrap: nowrap;
     color: white;
+    flex-wrap: nowrap;
     margin-left: 15px;
     overflow-x: hidden;
     flex-direction: column;

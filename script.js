@@ -43,9 +43,9 @@ function displayMovieList(movies){
         movieListItem.classList.add('search-list-item');
         
         // Hits another API where Actors working in the film are stored
-        // fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
-        // .then((response) => response.json())
-        // .then((data) => {
+        fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
+        .then((response) => response.json())
+        .then((data) => {
             if(movies[idx].Poster != "N/A")
                 moviePoster = movies[idx].Poster;
             else 
@@ -58,9 +58,11 @@ function displayMovieList(movies){
                 <div class = "search-item-info">
                     <h3>${movies[idx].Title}</h3>
                     <p>${movies[idx].Year}</p>
+                    <p>${data.Actors}</p>
                 </div>
+                <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
                 `;
-            // });
+            });
 
         // movieListItem.innerHTML = `
         // <div class = "search-item-thumbnail shadow-md">

@@ -114,8 +114,7 @@ section {
 
 .heart {
     cursor:pointer;
-    color: white;
-    padding-bottom: 12px;
+    margin-right: 10px;
 }
 
 #movie-info p {
