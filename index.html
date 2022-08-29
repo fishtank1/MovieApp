@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- tailwindcss dependencies -->
+  <link href="../dist/output.css" rel="stylesheet">
+  
+  <!-- custom css -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="search-styles.css">
+
+  <!-- cdn imports for font-awesome and tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/41f5e993c5.js" crossorigin="anonymous"></script>
+</head>
+<body class="flex-col">
+  
+  <!-- NAV BAR FOR SITE -->
+  <nav>
+    <div class="flex items-center p-4 ml-9">
+      <i class="fa-solid fa-grip text-lg"></i>
+      <p class="greeting-message ml-8 text-sm">Good Morning</p>
+    </div>
+
+    <div class="flex items-center p-4 mr-9">
+      <i class="fa-solid fa-bell block text-lg"></i>
+      <!-- <i class="fa-regular fa-bell block text-lg"></i> -->
+      <i class="fa-solid fa-gear ml-7 block text-lg"></i>
+    </div>
+  </nav>
+  <!-- END OF NAV BAR -->
+  
+  <!-- START OF SEARCH BAR -->
+  <main class="flex-col justify-center items-center">
+    <!-- SITE LOGO -->
+    <div class="searchbar-logo mb-20">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" alt="" class="shadow-2xl">
+    </div>
+    <!-- END OF SITE LOGO -->
+    
+    <!-- SEARCH BAR MAIN SECTION -->
+    <div class="flex rounded-full shadow-xl m-auto"  id="search-bar">
+      <input type="text" class="h-10 p-6 pl-4 text-white search-query" placeholder="Search IMDB">
+      <div class="bg-sky-700 search-btn flex justify-center items-center">
+        <i class="fa-solid fa-magnifying-glass text-lg block"></i>
+      </div>
+    </div>
+    <!-- END OF SEARCH BAR MAIN SECTION -->
+  </main>
+
+  <main class="flex justify-center items-center fav-tiles mt-10">
+    <div class="text-3xl order-last font-extralight hover:shadow-md hover:bg-black hover:rounded-md">
+      +
+    </div>
+  </main>
+
+  <!-- SEARCH RESULT BOX -->
+  <!-- <div id="search-list-item-res" class="order-2 rounded shadow-md">
+    <div class="search-list-item">
+      <div class="search-item-thumbnail shadow-md">
+        <img class="rounded" src="https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_FMjpg_UX1000_.jpg" alt="">
+      </div>
+      <div class="search-item-info"> 
+        <h3>Spiderman</h3>
+        <p>2002</p>
+        <p>Tobey Marguire, Kristen Dunst</p>
+      </div>
+    </div>
+  </div> -->
+<!-- END OF SEARCH RESULT BOX -->
+
+
+
+
+
+  <!-- POSTER DEATAILS
+    <header class="flex">
+    <div>
+      <img src="https://occ-0-4995-2186.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABb-UpmYTtrGdTsouBBn7c4Lbldr9weTG1Z5C7hmnYARuZFPEZpr4Hk7glwUOglFBw_EyYhWe52CEylRmxPRSFDXNykofDT1-IX4ZZf_YjfqO.png?r=030" id="trend-img" alt="">
+      <p class="text-white header-txt">Burdened by old demons, a troubled but brilliant detective sets out to solve two confounding abduction cases - one involving his own girlfriend.</p>
+      <div class="flex">
+        <button class="flex justify-center items-center rounded text-white btn-tr" id="play">
+          <i class="fa-solid fa-play btn-icn"></i>
+          <p class="ml-2 header-btn-txt">Play</p>
+        </button>
+        
+        <button class="flex justify-center items-center rounded text-white btn-tr" id="info">
+          <i class="fa-solid fa-circle-info btn-icn"></i>
+          <p class="ml-2 header-btn-txt">More Info</p>
+        </button>
+      </div>
+    </div>
+    <div></div>
+  </header> -->
+
+  <!-- MOVIE DETAILS PAGE -->
+  <!-- <section class="flex bg-black">
+    <div id="movie-image">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_FMjpg_UX1000_.jpg" class="rounded shadow-2xl" alt="">
+    </div>
+    <div id="movie-info">
+      <h1>Spider-man</h1>
+      <p>Year: 2017 &nbsp;<span class=" bg-yellow-500 p-1 rounded">Rating: PG-13</span> &nbsp;Released: 05 May 2017</p>
+      <p class="rounded bg-slate-800 p-1.5 w-fit"><span>Genere:</span> Action, Adventure, Fantasy</p>
+      <p><span>Writer:</span> Sam Raimi</p>
+      <p><span>Actors:</span> Tobey Maguire</p>
+      <p><span>Plot:</span> When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy befalls his family.</p>
+      <p class="italic mv-lang"><span>Language: </span>English, Spanish</p>
+      <p><span><i class="fa-solid fa-award"></i></span>&nbsp;&nbsp;  Won 3 Oscars, 89 wins & 131 nominations total</p>
+    </div>
+  </section> -->
+</body>
+</html>
