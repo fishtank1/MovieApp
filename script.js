@@ -4,7 +4,7 @@
 const movieSearchBox = document.getElementById('movie-search-box');
 const searchList = document.getElementById('search-list');
 const searchBtn = document.querySelector('.search-btn');
-const resultGrid = document.getElementById('result-grid');
+const resultGrid = document.getElementById('result-flex');
 
 // load movies from API
 async function loadMovies(searchTerm){
@@ -43,9 +43,9 @@ function displayMovieList(movies){
         movieListItem.classList.add('search-list-item');
         
         // Hits another API where Actors working in the film are stored
-        fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
-        .then((response) => response.json())
-        .then((data) => {
+        // fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
+        // .then((response) => response.json())
+        // .then((data) => {
             if(movies[idx].Poster != "N/A")
                 moviePoster = movies[idx].Poster;
             else 
@@ -58,23 +58,70 @@ function displayMovieList(movies){
                 <div class = "search-item-info">
                     <h3>${movies[idx].Title}</h3>
                     <p>${movies[idx].Year}</p>
-                    <p>${data.Actors}</p>
                 </div>
                 <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
                 `;
-            });
-
-        // movieListItem.innerHTML = `
-        // <div class = "search-item-thumbnail shadow-md">
-        //     <img class="rounded" src = "${moviePoster}">
-        // </div>
-        // <div class = "search-item-info">
-        //     <h3>${movies[idx].Title}</h3>
-        //     <p>${movies[idx].Year}</p>
-        //     <p>${data.Actors}</p>
-        // </div>
-        // `;
+            // });
+            // <p>${data.Actors}</p>
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
 }
+
+
+function loadMovieDetails(){
+    const searchListMovies = searchList.querySelectorAll('.search-list-item');
+    searchListMovies.forEach(movie => {
+        movie.addEventListener('click', async () => {
+            // console.log(movie.dataset.id);
+            searchList.classList.add('hide-search-list');
+            movieSearchBox.value = "";
+            const result = await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`);
+            const movieDetails = await result.json();
+            // console.log(movieDetails);
+            document.querySelector('.nav-brand-logo').style.display = "flex";
+            document.querySelector('.settings').style.display = "none";
+            document.querySelector('.searchbar-logo').style.display = "none";
+            displayMovieDetails(movieDetails);
+        });
+    });
+}
+
+function displayMovieDetails(details){
+    resultGrid.innerHTML = `
+    <div id = "movie-image">
+        <img src = "${(details.Poster != "N/A") ? details.Poster : "notfound.png"}" alt = "movie poster" class="rounded shadow-2xl">
+    </div>
+    <div id = "movie-info">
+        <h1 class = "movie-title">${details.Title}</h1>
+	  <p>Year: ${details.Year} &nbsp;<span class=" bg-yellow-500 p-1 rounded">Rating: ${details.Rated}</span> &nbsp;Released: ${details.Released}</p>
+
+	  <p class="rounded shadow-md bg-zinc-700 p-1.5 w-fit"><span>Genere:</span> ${details.Genre}</p>
+
+	  <p><span>Writer:</span> ${details.Writer}</p>
+	  <p><span>Actors:</span> ${details.Actors}</p>
+        <p><span>Plot:</span> ${details.Plot}</p>
+	  <p class="italic mv-lang"><span>Language: </span>${details.Language}</p>
+	  <p><span><i class="fa-solid fa-award"></i></span>&nbsp;&nbsp;  ${details.Awards}</p>
+    </div>
+    `;
+}
+
+// After search clicking on window resets the searchbar
+window.addEventListener('click', (event) => {
+    if(event.target.className != "form-control"){
+        movieSearchBox.value = "";
+        movieSearchBox.placeholder = "Search IMDb"
+        movieSearchBox.style.borderBottomLeftRadius = "25px";
+        searchBtn.style.borderBottomRightRadius = "25px";
+        searchList.classList.add('hide-search-list');
+    }
+});
+
+// After serach on top nav bar logo hides when clicked
+document.querySelector('.nav-brand-logo').addEventListener('click', () => {
+    document.querySelector('.settings').style.display = "flex";
+    document.querySelector('.nav-brand-logo').style.display = "none";
+    document.querySelector('.searchbar-logo').style.display = "flex";
+    resultGrid.innerHTML = '';
+});

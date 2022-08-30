@@ -16,8 +16,13 @@ body {
 nav {
     height: 80px;
     display: flex;
+    margin-bottom: 100px;
     align-items: flex-end;
     justify-content: space-between;
+}
+
+.nav-brand-logo {
+    display: none;
 }
 
 /* END OF NAV BAR STYLE */
@@ -84,7 +89,8 @@ nav {
 
 /* START OF MOVIE INFO SETTINGS */
 section {
-    height: 100vh;
+    height: auto;
+    margin-top: 200px;
     align-items: center;
     flex-direction: row;
     justify-content: center;
@@ -99,9 +105,9 @@ section {
 }
 
 #movie-info {
-    width: 25%;
+    width: 450px;
+    height: 450px;
     color: white;
-    /* margin-bottom: 50px; */
 }
 
 #movie-info h1 {
@@ -110,6 +116,7 @@ section {
     font-weight: bold;
     font-size: xx-large;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgb(0 0 0 / 29%), 2px 4px 7px rgb(73 64 125 / 35%)
 }
 
 .heart {
@@ -157,7 +164,7 @@ p span {
     }
 
     section {
-        margin-top: 200px;
+        margin-top: 62px;
         text-align: center;
         flex-direction: column;
     }
@@ -179,5 +186,9 @@ p span {
 
     #movie-info {
         width: 80%;
+    }
+
+    #movie-info p {
+        margin: 15px auto;
     }
 }

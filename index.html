@@ -19,21 +19,27 @@
   
   <!-- NAV BAR FOR SITE -->
   <nav>
+    <!-- nav bar left side -->
     <div class="flex items-center p-4 ml-9">
       <i class="fa-solid fa-grip text-lg"></i>
-      <p class="greeting-message ml-8 text-sm">Good Morning</p>
+      <p class="greeting-message ml-8 text-sm"></p>
     </div>
 
+    <!-- nav bar middle -->
+    <div class="items-center nav-brand-logo">
+      <img class="w-20 mb-2.5" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" alt="site-logo">
+    </div>
+
+    <!-- nav bar right side -->
     <div class="flex items-center p-4 mr-9">
-      <i class="fa-solid fa-bell block text-lg"></i>
-      <!-- <i class="fa-regular fa-bell block text-lg"></i> -->
-      <i class="fa-solid fa-gear ml-7 block text-lg"></i>
+      <i class="hover:text-amber-400 ease-linear duration-200 fa-solid fa-bell block text-lg"></i>
+      <i class="hover:text-neutral-600 ease-linear duration-200 fa-solid fa-gear ml-7 block text-lg settings"></i>
     </div>
   </nav>
   <!-- END OF NAV BAR -->
   
   <!-- START OF SEARCH BAR -->
-  <main class="flex-col justify-center items-center">
+  <main class="flex-col justify-center items-center search-implement">
     <!-- SITE LOGO -->
     <div class="searchbar-logo mb-20">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" alt="" class="shadow-2xl">
@@ -42,7 +48,7 @@
     
     <!-- SEARCH BAR MAIN SECTION -->
     <div class="flex shadow-xl m-auto"  id="search-bar">
-      <input type="search" class="h-10 p-6 pl-4 text-white search-query" placeholder="Search IMDB" id="movie-search-box" onkeyup="findMovies()">
+      <input type="search" class="h-10 p-6 pl-4 text-white search-query form-control" placeholder="Search IMDB" id="movie-search-box" onkeyup="findMovies()" onclick="findMovies()">
       <div class="bg-sky-700 search-btn flex justify-center items-center search-btn">
         <i class="fa-solid fa-magnifying-glass text-lg block"></i>
       </div>
@@ -54,31 +60,15 @@
     </div>
   </main>
 
-  <!-- <main class="flex justify-center items-center fav-tiles mt-10">
-    <div class="text-3xl order-last font-extralight hover:shadow-md hover:bg-black hover:rounded-md">
-      +
-    </div>
-  </main> -->
+  <!-- SPACE FOR FUTURE FAV TILES FEATURE -->
 
   <!-- MOVIE DETAILS PAGE -->
-  <section class="flex">
-    <div id="movie-image">
-      <img src="https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_FMjpg_UX1000_.jpg" class="rounded shadow-2xl" alt="">
-    </div>
-    <div id="movie-info">
-      <h1>Spider-man</h1>
-      <p>Year: 2017 &nbsp;<span class=" bg-yellow-500 p-1 rounded">Rating: PG-13</span> &nbsp;Released: 05 May 2017</p>
-      <p class="rounded bg-zinc-700 p-1.5 w-fit"><span>Genere:</span> Action, Adventure, Fantasy</p>
-      <p><span>Writer:</span> Sam Raimi</p>
-      <p><span>Actors:</span> Tobey Maguire</p>
-      <p><span>Plot:</span> When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy befalls his family.</p>
-      <p class="italic mv-lang"><span>Language: </span>English, Spanish</p>
-      <p><span><i class="fa-solid fa-award"></i></span>&nbsp;&nbsp;  Won 3 Oscars, 89 wins & 131 nominations total</p>
-    </div>
+  <section class="flex result-flex" id="result-flex">
+    <!-- After clicking search result -->
   </section>
 
   <script src="script.js"></script>
-  <script src="favButtonInteraction.js"></script>
+  <script src="greetingMessage.js"></script>
   <script src="favButtonInteraction.js"></script>
 </body>
 </html>
