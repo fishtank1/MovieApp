@@ -43,6 +43,7 @@ function displayMovieList(movies){
         movieListItem.classList.add('search-list-item');
         
         // Hits another API where Actors working in the film are stored
+
         // fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
         // .then((response) => response.json())
         // .then((data) => {
@@ -62,23 +63,20 @@ function displayMovieList(movies){
                 <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
                 `;
             // });
-            // <p>${data.Actors}</p>
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
 }
 
 
-function loadMovieDetails(){
+async function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
         movie.addEventListener('click', async () => {
-            // console.log(movie.dataset.id);
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
             const result = await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`);
             const movieDetails = await result.json();
-            // console.log(movieDetails);
             document.querySelector('.nav-brand-logo').style.display = "flex";
             document.querySelector('.settings').style.display = "none";
             document.querySelector('.searchbar-logo').style.display = "none";
