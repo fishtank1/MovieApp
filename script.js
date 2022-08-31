@@ -41,7 +41,7 @@ function findMovies(){
     }
 }
 
-function displayMovieList(movies){
+async function displayMovieList(movies){
     searchBoxBoderTrigger();
     searchList.innerHTML = "";
     for(let idx = 0; idx < movies.length; idx++){
@@ -50,10 +50,12 @@ function displayMovieList(movies){
         movieListItem.classList.add('search-list-item');
         
         // Hits another API where Actors working in the film are stored
+        const result = await fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`);
+        const movieDetails = await result.json();
 
-        fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
-        .then((response) => response.json())
-        .then((data) => {
+        // fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
+        // .then((response) => response.json())
+        // .then((data) => {
             if(movies[idx].Poster != "N/A")
                 moviePoster = movies[idx].Poster;
             else 
@@ -66,11 +68,11 @@ function displayMovieList(movies){
                 <div class = "search-item-info">
                     <h3>${movies[idx].Title}</h3>
                     <p>${movies[idx].Year}</p>
-                    <p>${data.Actors}</p>
+                    <p>${movieDetails.Actors}</p>
                 </div>
                 <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
                 `;
-            });
+            // });
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
