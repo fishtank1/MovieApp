@@ -36,7 +36,7 @@ function findMovies() {
     }
 }
 
-async function displayMovieList(movies){
+function displayMovieList(movies){
     searchBoxBoderTrigger();
     searchList.innerHTML = "";
     for(let idx = 0; idx < movies.length; idx++){
@@ -50,23 +50,23 @@ async function displayMovieList(movies){
         xhr.onload = async function () {
             actors = await JSON.parse(this.responseText).Actors;
             if(movies[idx].Poster != "N/A")
-            moviePoster = movies[idx].Poster;
-        else 
-            moviePoster = "notfound.png";
+                moviePoster = movies[idx].Poster;
+            else 
+                    moviePoster = "notfound.png";
                 
-        movieListItem.innerHTML = await `
-            <div class = "search-item-thumbnail shadow-md">
-                <img class="rounded" src = "${moviePoster}">
-            </div>
-            <div class = "search-item-info">
-                <h3>${movies[idx].Title}</h3>
-                <p>${movies[idx].Year}</p>
-                <p>${actors}</p>
-            </div>
-            <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
+            movieListItem.innerHTML = `
+                <div class = "search-item-thumbnail shadow-md">
+                    <img class="rounded" src = "${moviePoster}">
+                </div>
+                <div class = "search-item-info">
+                    <h3>${movies[idx].Title}</h3>
+                    <p>${movies[idx].Year}</p>
+                    <p>${actors}</p>
+                </div>
+                <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
             `;
         }
-        xhr.send();        
+        xhr.send();
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
@@ -102,9 +102,7 @@ function displayMovieDetails(details){
     <div id = "movie-info">
         <h1 class = "movie-title">${details.Title}</h1>
 	  <p>Year: ${details.Year} &nbsp;<span class=" bg-yellow-500 p-1 rounded">Rating: ${details.Rated}</span> &nbsp;Released: ${details.Released}</p>
-
 	  <p class="rounded shadow-md bg-zinc-700 p-1.5 w-fit"><span>Genere:</span> ${details.Genre}</p>
-
 	  <p><span>Writer:</span> ${details.Writer}</p>
 	  <p><span>Actors:</span> ${details.Actors}</p>
         <p><span>Plot:</span> ${details.Plot}</p>
@@ -132,4 +130,3 @@ document.querySelector('.nav-brand-logo').addEventListener('click', () => {
     document.querySelector('.searchbar-logo').style.display = "flex";
     resultGrid.innerHTML = '';
 });
-
