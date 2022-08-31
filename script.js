@@ -7,11 +7,11 @@ const searchBtn = document.querySelector('.search-btn');
 const resultGrid = document.getElementById('result-flex');
 
 // load movies from API Async
-function loadMovies(searchTerm){
-    fetch(`https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`)
+async function loadMovies(searchTerm){
+    await fetch(`https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`)
         .then((response) => response.json())
         .then((data) => {
-            if(data.Response == "True") displayMovieList(data.Search);
+            if(data.Response == "True")  displayMovieList(data.Search);
         });
     
     
