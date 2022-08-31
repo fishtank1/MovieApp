@@ -3,7 +3,7 @@ const searchList = document.getElementById('search-list');
 const searchBtn = document.querySelector('.search-btn');
 const resultGrid = document.getElementById('result-flex');
 
-function loadMovies(searchTerm) {
+async function loadMovies(searchTerm) {
     // console.log('Enter this file');
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`, true);
@@ -94,7 +94,7 @@ function loadMovieDetails(){
     });
 }
 
-function displayMovieDetails(details){
+async function displayMovieDetails(details){
     resultGrid.innerHTML = `
     <div id = "movie-image">
         <img src = "${(details.Poster != "N/A") ? details.Poster : "notfound.png"}" alt = "movie poster" class="rounded shadow-2xl">
