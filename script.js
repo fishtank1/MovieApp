@@ -79,27 +79,27 @@ async function displayMovieList(movies){
 }
 
 // Async
-function loadMovieDetails(){
+async function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
         movie.addEventListener('click', async () => {
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
-            fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`)
-            .then((response) => response.json())
-            .then((data) => {
-                document.querySelector('.nav-brand-logo').style.display = "flex";
-                document.querySelector('.settings').style.display = "none";
-                document.querySelector('.searchbar-logo').style.display = "none";
-                displayMovieDetails(data);
-            });
+            // fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`)
+            // .then((response) => response.json())
+            // .then((data) => {
+                // document.querySelector('.nav-brand-logo').style.display = "flex";
+                // document.querySelector('.settings').style.display = "none";
+                // document.querySelector('.searchbar-logo').style.display = "none";
+                // displayMovieDetails(data);
+            // });
             
-            // const result = await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`);
-            // const movieDetails = await result.json();
-            // document.querySelector('.nav-brand-logo').style.display = "flex";
-            // document.querySelector('.settings').style.display = "none";
-            // document.querySelector('.searchbar-logo').style.display = "none";
-            // displayMovieDetails(movieDetails);
+            const result = await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`);
+            const movieDetails = await result.json();
+            document.querySelector('.nav-brand-logo').style.display = "flex";
+            document.querySelector('.settings').style.display = "none";
+            document.querySelector('.searchbar-logo').style.display = "none";
+            displayMovieDetails(movieDetails);
         });
     });
 }
