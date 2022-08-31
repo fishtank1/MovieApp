@@ -9,7 +9,7 @@ function loadMovies(searchTerm) {
     xhr.open('GET', `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`, true);
     xhr.onload = async function () {
         if(this.status == 200) {
-            displayMovieList(JSON.parse(this.responseText).Search);
+            await displayMovieList(JSON.parse(this.responseText).Search);
         }
     }
 
@@ -44,13 +44,16 @@ function displayMovieList(movies){
         let movieListItem = document.createElement('div');
         movieListItem.dataset.id = movies[idx].imdbID; // setting movie id in  data-id
         movieListItem.classList.add('search-list-item');
-        
+        let actors;
         // Hits another API where Actors working in the film are stored
         let xhr = new XMLHttpRequest();
         xhr.open('GET', `http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`, true);
-        xhr.onload = function () {
-            let actors = JSON.parse(this.responseText).Actors;
-            if(movies[idx].Poster != "N/A")
+        xhr.onload = async function () {
+            actors = await JSON.parse(this.responseText).Actors;
+        }
+        xhr.send();
+
+        if(movies[idx].Poster != "N/A")
                 moviePoster = movies[idx].Poster;
             else 
                     moviePoster = "notfound.png";
@@ -66,9 +69,7 @@ function displayMovieList(movies){
                 </div>
                 <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
             `;
-        }
 
-        xhr.send();
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
@@ -78,21 +79,20 @@ function displayMovieList(movies){
 function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
-        movie.addEventListener('click', () => {
+        movie.addEventListener('click', async () => {
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
 
             let xhr = new XMLHttpRequest();
             xhr.open('GET', `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`, true);
-            xhr.onload = function () {
-                const movieDetails = JSON.parse(this.responseText);
-                document.querySelector('.nav-brand-logo').style.display = "flex";
-                document.querySelector('.settings').style.display = "none";
-                document.querySelector('.searchbar-logo').style.display = "none";
-                displayMovieDetails(movieDetails);
+            xhr.onload = async function () {
+                const movieDetails = await JSON.parse(this.responseText);
+                await displayMovieDetails(movieDetails);
             }
-
             xhr.send();
+            document.querySelector('.nav-brand-logo').style.display = "flex";
+            document.querySelector('.settings').style.display = "none";
+            document.querySelector('.searchbar-logo').style.display = "none";
         });
     });
 }
