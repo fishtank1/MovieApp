@@ -36,7 +36,7 @@ function findMovies() {
     }
 }
 
-function displayMovieList(movies){
+async function displayMovieList(movies){
     searchBoxBoderTrigger();
     searchList.innerHTML = "";
     for(let idx = 0; idx < movies.length; idx++){
@@ -50,23 +50,23 @@ function displayMovieList(movies){
         xhr.onload = async function () {
             actors = await JSON.parse(this.responseText).Actors;
             if(movies[idx].Poster != "N/A")
-                moviePoster = movies[idx].Poster;
-            else 
-                    moviePoster = "notfound.png";
+            moviePoster = movies[idx].Poster;
+        else 
+            moviePoster = "notfound.png";
                 
-            movieListItem.innerHTML = `
-                <div class = "search-item-thumbnail shadow-md">
-                    <img class="rounded" src = "${moviePoster}">
-                </div>
-                <div class = "search-item-info">
-                    <h3>${movies[idx].Title}</h3>
-                    <p>${movies[idx].Year}</p>
-                    <p>${actors}</p>
-                </div>
-                <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
+        movieListItem.innerHTML = await `
+            <div class = "search-item-thumbnail shadow-md">
+                <img class="rounded" src = "${moviePoster}">
+            </div>
+            <div class = "search-item-info">
+                <h3>${movies[idx].Title}</h3>
+                <p>${movies[idx].Year}</p>
+                <p>${actors}</p>
+            </div>
+            <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
             `;
         }
-        xhr.send();
+        xhr.send();        
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
