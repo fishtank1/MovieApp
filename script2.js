@@ -81,7 +81,7 @@ function loadMovieDetails(){
             movieSearchBox.value = "";
 
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`, true);
+            xhr.open('GET', `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`, true);
             xhr.onload = async function () {
                 const movieDetails = await JSON.parse(this.responseText);
                 await displayMovieDetails(movieDetails);
