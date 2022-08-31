@@ -36,7 +36,6 @@ function findMovies() {
     }
 }
 
-
 function displayMovieList(movies){
     searchBoxBoderTrigger();
     searchList.innerHTML = "";
@@ -50,10 +49,7 @@ function displayMovieList(movies){
         xhr.open('GET', `http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`, true);
         xhr.onload = async function () {
             actors = await JSON.parse(this.responseText).Actors;
-        }
-        xhr.send();
-
-        if(movies[idx].Poster != "N/A")
+            if(movies[idx].Poster != "N/A")
                 moviePoster = movies[idx].Poster;
             else 
                     moviePoster = "notfound.png";
@@ -69,7 +65,8 @@ function displayMovieList(movies){
                 </div>
                 <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
             `;
-
+        }
+        xhr.send();
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
