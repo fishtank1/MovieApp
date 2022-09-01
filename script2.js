@@ -109,6 +109,12 @@ function displayMovieDetails(details){
     searchBoxBoderTrigger();
 }
 
+window.addEventListener('click', (event) => {
+    if(event.target.className != "form-control"){
+        searchList.classList.add('hide-search-list');
+    }
+});
+
 document.querySelector('.nav-brand-logo').addEventListener('click', () => {
     document.querySelector('.settings').style.display = "flex";
     document.querySelector('.nav-brand-logo').style.display = "none";
