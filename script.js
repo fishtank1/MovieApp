@@ -76,6 +76,7 @@ async function loadMovieDetails(){
         movie.addEventListener('click', async () => {
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
+            console.log(movie.dataset.id);
             fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
             .then((data) => {
