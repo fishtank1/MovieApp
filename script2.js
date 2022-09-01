@@ -73,7 +73,7 @@ function loadOnClickMovieDetails() {
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
             console.log(movie.dataset.id);
-            fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
+            fetch(`https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
             .then((data) => {
                 document.querySelector('.nav-brand-logo').style.display = "flex";
