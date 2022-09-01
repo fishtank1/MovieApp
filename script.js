@@ -13,12 +13,6 @@ async function loadMovies(searchTerm){
         .then((data) => {
             if(data.Response == "True")  displayMovieList(data.Search);
         });
-    
-    
-    // const URL = `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`;
-    // const res = await fetch(`${URL}`);
-    // const data = await res.json();
-    // if(data.Response == "True") displayMovieList(data.Search);
 }
 
 function searchBoxBoderTrigger() {
@@ -75,7 +69,7 @@ async function displayMovieList(movies){
     loadMovieDetails();
 }
 
-// Async
+
 async function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
