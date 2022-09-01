@@ -7,12 +7,18 @@ const searchBtn = document.querySelector('.search-btn');
 const resultGrid = document.getElementById('result-flex');
 
 // load movies from API Async
-function loadMovies(searchTerm) {
-    fetch(`https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`)
+async function loadMovies(searchTerm){
+    await fetch(`https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`)
         .then((response) => response.json())
         .then((data) => {
             if(data.Response == "True")  displayMovieList(data.Search);
         });
+    
+    
+    // const URL = `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=94397865`;
+    // const res = await fetch(`${URL}`);
+    // const data = await res.json();
+    // if(data.Response == "True") displayMovieList(data.Search);
 }
 
 function searchBoxBoderTrigger() {
@@ -35,7 +41,7 @@ function findMovies(){
     }
 }
 
-function displayMovieList(movies) {
+async function displayMovieList(movies){
     searchBoxBoderTrigger();
     searchList.innerHTML = "";
     for(let idx = 0; idx < movies.length; idx++){
@@ -44,34 +50,39 @@ function displayMovieList(movies) {
         movieListItem.classList.add('search-list-item');
         
         // Hits another API where Actors working in the film are stored
-        if(movies[idx].Poster != "N/A")
-            moviePoster = movies[idx].Poster;
-        else 
-            moviePoster = "notfound.png";
+        fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
+        .then((response) => response.json())
+        .then((data) => {
+            if(movies[idx].Poster != "N/A")
+                moviePoster = movies[idx].Poster;
+            else 
+                    moviePoster = "notfound.png";
                 
-        movieListItem.innerHTML = `
-            <div class = "search-item-thumbnail shadow-md">
-                <img class="rounded" src = "${moviePoster}">
-            </div>
-            <div class = "search-item-info">
-                <h3>${movies[idx].Title}</h3>
-                <p>${movies[idx].Year}</p>
-            </div>
-            <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
-            `;
+            movieListItem.innerHTML = `
+                <div class = "search-item-thumbnail shadow-md">
+                    <img class="rounded" src = "${moviePoster}">
+                </div>
+                <div class = "search-item-info">
+                    <h3>${movies[idx].Title}</h3>
+                    <p>${movies[idx].Year}</p>
+                    <p>${data.Actors}</p>
+                </div>
+                <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
+                `;
+            });
         searchList.appendChild(movieListItem);
     }
     loadMovieDetails();
 }
 
-
-function loadMovieDetails() {
+// Async
+async function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
         movie.addEventListener('click', async () => {
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
-            await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
+            fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
             .then((data) => {
                 document.querySelector('.nav-brand-logo').style.display = "flex";
