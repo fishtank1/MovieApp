@@ -68,10 +68,10 @@ function displayMovieList(movies) {
 function loadMovieDetails() {
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
-        movie.addEventListener('click', () => {
+        movie.addEventListener('click', async () => {
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
-            fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`)
+            await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
             .then((data) => {
                 document.querySelector('.nav-brand-logo').style.display = "flex";
