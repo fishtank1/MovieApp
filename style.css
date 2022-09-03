@@ -156,9 +156,10 @@ p span {
 
 /* FAVOURITE PAGE */
 #favourite-result {
-    opacity: 0;
     margin: auto;
+    display: none;
     width: fit-content;
+    padding-bottom: 40px;
     transition: 0.1s linear opacity;
 }
 
@@ -169,26 +170,32 @@ p span {
 }
 
 .fav-res-img:hover {
-    opacity: 0.5;
     background-size: 100.9%;
 }
 
 .fav-res-img {
+    max-width: 350px;
+    max-height: 435px;
     width: 350px;
     height: 525px;
     background-size: 105%;
     background-position: center;
     background-repeat: no-repeat;
-    transition: 0.2s ease opacity, 0.2s linear background-size;
+    transition: 0.2s linear background-size;
 }
 
 .remove-fav {
     opacity: 0;
-    transition: o.2s ease opacity, o.2s ease color;
+    width: 100%;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    transition: o.2s ease opacity, o.2s ease color, o.3s ease-in-out background-color;
 }
 
 .remove-fav:hover {
+    opacity: 1;
     color: rgb(235, 84, 84);
+    background-color: #171717;
 }
 
 /* HANDLING TRANSITIONS */

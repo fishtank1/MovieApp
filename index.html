@@ -19,18 +19,18 @@
   <!-- NAV BAR FOR SITE -->
   <nav>
     <!-- nav bar left side -->
-    <div class="flex items-center p-4 ml-9">
+    <div class="flex items-center p-4 ml-9 cursor-pointer">
       <i class="fa-solid fa-grip text-lg grid"></i>
       <p class="greeting-message ml-8 text-sm"></p>
     </div>
 
     <!-- nav bar middle -->
-    <div class="items-center nav-brand-logo">
+    <div class="items-center nav-brand-logo cursor-pointer">
       <img class="w-20 mb-2.5" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" alt="site-logo">
     </div>
 
     <!-- nav bar right side -->
-    <div class="flex items-center p-4 mr-9">
+    <div class="flex items-center p-4 mr-9 cursor-pointer">
       <i class="hover:text-amber-400 ease-linear duration-200 fa-solid fa-bell block text-lg"></i>
       <i class="hover:text-red-400 ease-linear duration-200 block text-lg fa-solid fa-heart ml-7 fav"></i>
       <i class="hover:text-neutral-600 ease-linear duration-200 fa-solid fa-gear ml-7 block text-lg settings"></i>
@@ -70,7 +70,10 @@
 
   <!-- FAVOURITE MOVIES PAGE -->
   <div id="favourite-result" class="flex-col">
-    <h1 class="text-4xl font-bold mb-10">My Favourite</h1>
+    <div class="flex justify-between items-center mb-10">
+      <h1 class="text-4xl font-bold cursor-default">My Favourite</h1>
+      <p class="text-2xl font-bold hover:text-red-400 cursor-pointer clear-all">Clear List</p>
+    </div>
     <div class="gap-y-20 gap-x-10 fav-list">
       <!-- <div class="rounded-lg fav-res-img flex justify-center items-center firstchild">
         <button>

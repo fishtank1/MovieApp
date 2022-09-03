@@ -89,8 +89,8 @@ function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach((movie) => {
         movie.addEventListener('click', async () => {
-            // searchList.classList.add('hide-search-list');
-            // movieSearchBox.value = "";
+            searchList.classList.add('hide-search-list');
+            movieSearchBox.value = "";
             document.querySelector('.heart').addEventListener('click', addToFav(movie.dataset.poster));
             fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
@@ -133,7 +133,7 @@ window.addEventListener('click', (event) => {
         movieSearchBox.placeholder = "Search IMDB"
         movieSearchBox.style.borderBottomLeftRadius = "25px";
         searchBtn.style.borderBottomRightRadius = "25px";
-        // searchList.classList.add('hide-search-list');
+        searchList.classList.add('hide-search-list');
     }
 });
 
