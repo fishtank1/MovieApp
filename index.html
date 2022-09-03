@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Below meta tag is important it helps us render the http link or use http api -->
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <!-- custom css -->
   <link rel="stylesheet" href="style.css">
@@ -12,13 +13,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/41f5e993c5.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="flex-col">
   
   <!-- NAV BAR FOR SITE -->
   <nav>
     <!-- nav bar left side -->
     <div class="flex items-center p-4 ml-9">
-      <i class="fa-solid fa-grip text-lg"></i>
+      <i class="fa-solid fa-grip text-lg grid"></i>
       <p class="greeting-message ml-8 text-sm"></p>
     </div>
 
@@ -30,6 +32,7 @@
     <!-- nav bar right side -->
     <div class="flex items-center p-4 mr-9">
       <i class="hover:text-amber-400 ease-linear duration-200 fa-solid fa-bell block text-lg"></i>
+      <i class="hover:text-red-400 ease-linear duration-200 block text-lg fa-solid fa-heart ml-7 fav"></i>
       <i class="hover:text-neutral-600 ease-linear duration-200 fa-solid fa-gear ml-7 block text-lg settings"></i>
     </div>
   </nav>
@@ -52,6 +55,7 @@
     </div>
     <!-- END OF SEARCH BAR MAIN SECTION -->
 
+    <!-- Results suggestions -->
     <div class = "flex-col search-list shadow-xl" id = "search-list">
       <!-- list here -->
     </div>
@@ -64,8 +68,20 @@
     <!-- After clicking search result -->
   </section>
 
+  <!-- FAVOURITE MOVIES PAGE -->
+  <div id="favourite-result" class="flex-col">
+    <h1 class="text-4xl font-bold mb-10">My Favourite</h1>
+    <div class="gap-y-20 gap-x-10 fav-list">
+      <!-- <div class="rounded-lg fav-res-img flex justify-center items-center firstchild">
+        <button>
+         <p class="remove-fav shadow-2xl"><i class="fa-solid fa-trash text-8xl"></i></p>
+        </button>
+      </div> -->
+    </div>
+  </div>
+
   <script src="script.js"></script>
   <script src="greetingMessage.js"></script>
-  <!-- <script src="favButtonInteraction.js"></script> -->
+  <script src="myfavourite.js"></script>
 </body>
 </html>

@@ -4,7 +4,9 @@
 const movieSearchBox = document.getElementById('movie-search-box');
 const searchList = document.getElementById('search-list');
 const searchBtn = document.querySelector('.search-btn');
-const resultGrid = document.getElementById('result-flex');
+const resultGrid = document.getElementById('result-flex'); 
+
+let isLiked = false;
 
 // load movies from API Async
 async function loadMovies(searchTerm){
@@ -40,9 +42,10 @@ async function displayMovieList(movies){
     searchList.innerHTML = "";
     for(let idx = 0; idx < movies.length; idx++){
         let movieListItem = document.createElement('div');
+        movieListItem.dataset.poster = movies[idx].Poster;
         movieListItem.dataset.id = movies[idx].imdbID; // setting movie id in  data-id
         movieListItem.classList.add('search-list-item');
-        
+
         // Hits another API where Actors working in the film are stored
         fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
         .then((response) => response.json())
@@ -50,8 +53,8 @@ async function displayMovieList(movies){
             if(movies[idx].Poster != "N/A")
                 moviePoster = movies[idx].Poster;
             else 
-                    moviePoster = "notfound.png";
-                
+                moviePoster = "notfound.png";
+
             movieListItem.innerHTML = `
                 <div class = "search-item-thumbnail shadow-md">
                     <img class="rounded" src = "${moviePoster}">
@@ -69,18 +72,30 @@ async function displayMovieList(movies){
     loadMovieDetails();
 }
 
+function addToFav(data) {
+    let movies;
+    if(localStorage.length == 0) {
+        movies = [];
+        movies.push(data);
+        localStorage.setItem("movies", JSON.stringify(movies));
+    } else {
+        movies = JSON.parse(localStorage.getItem("movies"));
+        movies.push(data);
+        localStorage.setItem("movies", JSON.stringify(movies));
+    }
+}
 
-async function loadMovieDetails(){
+function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
-    searchListMovies.forEach(movie => {
+    searchListMovies.forEach((movie) => {
         movie.addEventListener('click', async () => {
-            searchList.classList.add('hide-search-list');
-            movieSearchBox.value = "";
-            console.log(movie.dataset.id);
+            // searchList.classList.add('hide-search-list');
+            // movieSearchBox.value = "";
+            document.querySelector('.heart').addEventListener('click', addToFav(movie.dataset.poster));
             fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
             .then((data) => {
-                document.querySelector('.nav-brand-logo').style.display = "flex";
+                document.querySelector('.nav-brand-logo').style.opacity = "1";
                 document.querySelector('.settings').style.display = "none";
                 document.querySelector('.searchbar-logo').style.display = "none";
                 displayMovieDetails(data);
@@ -109,6 +124,8 @@ function displayMovieDetails(details){
     `;
 }
 
+
+
 // After search clicking on window resets the searchbar
 window.addEventListener('click', (event) => {
     if(event.target.className != "form-control"){
@@ -116,14 +133,18 @@ window.addEventListener('click', (event) => {
         movieSearchBox.placeholder = "Search IMDB"
         movieSearchBox.style.borderBottomLeftRadius = "25px";
         searchBtn.style.borderBottomRightRadius = "25px";
-        searchList.classList.add('hide-search-list');
+        // searchList.classList.add('hide-search-list');
     }
 });
 
 // After serach on top nav bar logo hides when clicked
 document.querySelector('.nav-brand-logo').addEventListener('click', () => {
     document.querySelector('.settings').style.display = "flex";
-    document.querySelector('.nav-brand-logo').style.display = "none";
+    document.querySelector('.nav-brand-logo').style.opacity = "0";
     document.querySelector('.searchbar-logo').style.display = "flex";
     resultGrid.innerHTML = '';
 });
+
+// localStorage.clear();
+// localStorage.getItem('arrayofFav').push(value)
+// when clicked on fav button 

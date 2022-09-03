@@ -21,13 +21,13 @@ nav {
     justify-content: space-between;
 }
 
-.nav-brand-logo {
-    display: none;
-}
-
 /* END OF NAV BAR STYLE */
 
 /* START OF SEARCH SETTINGS */
+main {
+    border: 1px solid #242424;
+}
+
 #search-bar {
     width: 778.237px;
 }
@@ -63,6 +63,10 @@ nav {
     width: 300px;
 }
 
+#movie-search-box {
+    transition: 0.2s ease border-radius;
+}
+
 /* END OF SEARCH SETTINGS */
 
 
@@ -72,20 +76,27 @@ nav {
     border-bottom-right-radius: 25px;
 }
 
-.hide-search-list{
+.hide-search-list {
     display: none;
 }
+
+.search-list-item {
+    background-color: transparent;
+    transition: 0.2s ease background-color ;
+}
+
+.search-list-item:hover {
+    background-color: #171717;
+}
+
+.heart {
+    color: white;
+    cursor:pointer;
+    margin-right: 10px;
+}
+
 /* END OF SEARCH RESULT SUGGESTIONS */
 
-
-/* START OF FAV TILES SETTINGS */
-.fav-tiles div {
-    margin: auto;
-    padding: 30px 50px;
-    align-items: center;
-    justify-content: center;
-}
-/* END OF FAV TILES SETTINGS */
 
 /* START OF MOVIE INFO SETTINGS */
 section {
@@ -119,11 +130,6 @@ section {
     text-shadow: 1px 1px 3px rgb(0 0 0 / 29%), 2px 4px 7px rgb(73 64 125 / 35%)
 }
 
-.heart {
-    cursor:pointer;
-    margin-right: 10px;
-}
-
 #movie-info p {
     margin: 15px 0;
 }
@@ -148,13 +154,66 @@ p span {
 
 /* END OF MOVIE INFO SETTINGS */
 
+/* FAVOURITE PAGE */
+#favourite-result {
+    opacity: 0;
+    margin: auto;
+    width: fit-content;
+    transition: 0.1s linear opacity;
+}
 
-/* MEDIA QUERIES FOR SMALL SCREENS */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+.fav-list {
+    display: grid;
+    margin: 0px auto;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.fav-res-img:hover {
+    opacity: 0.5;
+    background-size: 100.9%;
+}
+
+.fav-res-img {
+    width: 350px;
+    height: 525px;
+    background-size: 105%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.2s ease opacity, 0.2s linear background-size;
+}
+
+.remove-fav {
+    opacity: 0;
+    transition: o.2s ease opacity, o.2s ease color;
+}
+
+.remove-fav:hover {
+    color: rgb(235, 84, 84);
+}
+
+/* HANDLING TRANSITIONS */
+.nav-brand-logo {
+    opacity: 0;
+    transition: 0.2s ease opacity;
+}
+.search-implement, .searchbar-logo {
+    opacity: 1;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-device-width: 1520px) {
+    #favourite-result div {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-device-width: 1130px) {
+    #favourite-result div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-device-width: 741px) {
     #search-bar {
         width: 350px;
     }
@@ -190,5 +249,15 @@ p span {
 
     #movie-info p {
         margin: 15px auto;
+    }
+
+    #favourite-result > h1 {
+        margin: auto;
+        margin-bottom: 20px;
+        width: fit-content;
+    }
+
+    #favourite-result div {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
