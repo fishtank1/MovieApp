@@ -30,6 +30,12 @@
     display: flex;
     padding: 15px 10px;
     border-bottom: 1.5px solid rgb(92, 87, 87);
+    transition: 0.2s ease background-color, 0.2s ease font-size;
+}
+
+.search-list-item:hover {
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0.725);
 }
 
 .search-item-thumbnail img {
@@ -56,6 +62,15 @@
 .search-item-info > p {
     opacity: 0.6;
     font-weight: 600;
+}
+
+.heart {
+    transition: 0.2s ease opacity, 0.2s ease color;
+}
+
+.heart:hover {
+    opacity: 1;
+    color: red;
 }
 
 @media only screen 

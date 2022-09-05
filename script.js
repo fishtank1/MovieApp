@@ -4,9 +4,7 @@
 const movieSearchBox = document.getElementById('movie-search-box');
 const searchList = document.getElementById('search-list');
 const searchBtn = document.querySelector('.search-btn');
-const resultGrid = document.getElementById('result-flex'); 
-
-let isLiked = false;
+const resultGrid = document.getElementById('result-flex');
 
 // load movies from API Async
 async function loadMovies(searchTerm){
@@ -37,7 +35,7 @@ function findMovies(){
     }
 }
 
-async function displayMovieList(movies){
+function displayMovieList(movies){
     searchBoxBoderTrigger();
     searchList.innerHTML = "";
     for(let idx = 0; idx < movies.length; idx++){
@@ -45,7 +43,7 @@ async function displayMovieList(movies){
         movieListItem.dataset.poster = movies[idx].Poster;
         movieListItem.dataset.id = movies[idx].imdbID; // setting movie id in  data-id
         movieListItem.classList.add('search-list-item');
-
+        
         // Hits another API where Actors working in the film are stored
         fetch(`http://www.omdbapi.com/?i=${movies[idx].imdbID}&apikey=94397865`)
         .then((response) => response.json())
@@ -54,48 +52,74 @@ async function displayMovieList(movies){
                 moviePoster = movies[idx].Poster;
             else 
                 moviePoster = "notfound.png";
-
+                
             movieListItem.innerHTML = `
                 <div class = "search-item-thumbnail shadow-md">
                     <img class="rounded" src = "${moviePoster}">
                 </div>
-                <div class = "search-item-info">
+                <div class = "search-item-info" onclick="info()">
                     <h3>${movies[idx].Title}</h3>
                     <p>${movies[idx].Year}</p>
                     <p>${data.Actors}</p>
                 </div>
-                <p class="heart"><i class="fa-solid fa-heart text-2xl"></i></p>
+                <p class="heart border" onclick="fav(this)"><i class="fa-solid fa-heart text-2xl"></i></p>
                 `;
             });
         searchList.appendChild(movieListItem);
     }
-    loadMovieDetails();
 }
 
-function addToFav(data) {
-    let movies;
-    if(localStorage.length == 0) {
-        movies = [];
-        movies.push(data);
-        localStorage.setItem("movies", JSON.stringify(movies));
-    } else {
-        movies = JSON.parse(localStorage.getItem("movies"));
-        movies.push(data);
-        localStorage.setItem("movies", JSON.stringify(movies));
+function info() {
+    console.log('clicked info');
+    resetBar();
+    loadMovieDetails();
+    searchList.classList.add('hide-search-list');
+}
+
+function fav(data) {
+    console.log('clicked fav');
+    // console.log(data.parentNode.dataset.poster); very important thing learned
+    makeFavList(data.parentNode.dataset.poster);
+}
+
+let isEntering = false;
+
+function favButtonStyle() {
+    if(isEntering) {
+        document.querySelector('.footer').style.backgroundColor = "transparent";
+        document.querySelector('.footer').style.border = "1px solid white";
+        document.querySelector('.footer').style.borderRadius = "7px";
+        document.querySelector('.footer').style.opacity = "0.5";
+    }
+    else {
+        document.querySelector('.footer').style.backgroundColor = "black";
+        document.querySelector('.footer').style.opacity = "1";
+        document.querySelector('.footer').style.border = "none";
+    }
+}
+
+function enterFavPage() {
+    console.log(isEntering);
+    if(isEntering) {
+        favButtonStyle();
+        isEntering = false;
+        exitFavPage();
+    }
+    else {
+        favButtonStyle();
+        isEntering = true;
+        showFavList();
     }
 }
 
 function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
-    searchListMovies.forEach((movie) => {
-        movie.addEventListener('click', async () => {
-            searchList.classList.add('hide-search-list');
-            movieSearchBox.value = "";
-            document.querySelector('.heart').addEventListener('click', addToFav(movie.dataset.poster));
+    searchListMovies.forEach(movie => {
+        movie.addEventListener('click', () => {
             fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=94397865`)
             .then((response) => response.json())
             .then((data) => {
-                document.querySelector('.nav-brand-logo').style.opacity = "1";
+                document.querySelector('.nav-brand-logo').style.display = "flex";
                 document.querySelector('.settings').style.display = "none";
                 document.querySelector('.searchbar-logo').style.display = "none";
                 displayMovieDetails(data);
@@ -125,26 +149,18 @@ function displayMovieDetails(details){
 }
 
 
+// Function to reset searchbar to it's initial state
+function resetBar() {
+    movieSearchBox.value = "";
+    movieSearchBox.placeholder = "Search IMDB"
+    movieSearchBox.style.borderBottomLeftRadius = "25px";
+    searchBtn.style.borderBottomRightRadius = "25px";
+}
 
-// After search clicking on window resets the searchbar
-window.addEventListener('click', (event) => {
-    if(event.target.className != "form-control"){
-        movieSearchBox.value = "";
-        movieSearchBox.placeholder = "Search IMDB"
-        movieSearchBox.style.borderBottomLeftRadius = "25px";
-        searchBtn.style.borderBottomRightRadius = "25px";
-        searchList.classList.add('hide-search-list');
-    }
-});
-
-// After serach on top nav bar logo hides when clicked
+// After serach on nav bar logo hides when clicked
 document.querySelector('.nav-brand-logo').addEventListener('click', () => {
     document.querySelector('.settings').style.display = "flex";
-    document.querySelector('.nav-brand-logo').style.opacity = "0";
+    document.querySelector('.nav-brand-logo').style.display = "none";
     document.querySelector('.searchbar-logo').style.display = "flex";
     resultGrid.innerHTML = '';
 });
-
-// localStorage.clear();
-// localStorage.getItem('arrayofFav').push(value)
-// when clicked on fav button 

@@ -1,58 +1,66 @@
-let favisClicked = false, tileisClicked = false;
-let heartBTN = document.querySelector('.fav');
+function makeFavList(params) {
+    if(localStorage.length == 0) {
+        movies = [];
+        movies.push(params);
+        localStorage.setItem("movies", JSON.stringify(movies));
+    } else {
+        movies = JSON.parse(localStorage.getItem("movies"));
+        movies.push(params);
+        localStorage.setItem("movies", JSON.stringify(movies));
+    }    
+}
 
-heartBTN.addEventListener('click', () => {
-    if(favisClicked == false && localStorage == null) {
-        window.alert('No movies added to the list or if added then please reload the page and click again.');
+
+function showFavList(){
+    let arr = JSON.parse(localStorage.getItem("movies"));
+    // console.log(arr);
+    if(arr == null || arr.length == 0) {
+        window.alert("You've not added any movie into the list yet.");
         return;
     }
-    else if(favisClicked == false) {
-        // Displays favourites 
-        favisClicked = true;
-        resultGrid.innerHTML = '';
-        heartBTN.style.color = "red";
-        document.querySelector('.settings').style.display = "none";
-        document.querySelector('#favourite-result').style.display = "flex";
-        document.querySelector('.search-implement').style.display = 'none';
-        document.querySelector('.nav-brand-logo').style.opacity = '1';
-        document.getElementById('favourite-result').style.opacity = '1';
-    } else {
-        // Hides favourites
-        favisClicked = false;
-        heartBTN.style.color = "white";
-        document.querySelector('.settings').style.display = "flex";
-        document.querySelector('.nav-brand-logo').style.opacity = '0';
-        document.getElementById('favourite-result').style.opacity = '0';
-        document.querySelector('.searchbar-logo').style.display = "flex";
-        document.querySelector('#favourite-result').style.display = "none";
-        document.querySelector('.search-implement').style.display = 'flex';
-    }
-});
 
-let arr = JSON.parse(localStorage.getItem("movies"));
-console.log(JSON.parse(localStorage.getItem("movies")))
-for (var i = 0; i < arr.length; i++) {
-    let movieListItem = document.createElement('div');
-    movieListItem.dataset.id = i;
-    movieListItem.classList.add('fav-res-img');
-    movieListItem.style.backgroundImage = `url(${arr[i]})`;
-    movieListItem.classList.add('rounded-lg');
-    movieListItem.classList.add('flex');
-    movieListItem.classList.add('items-end');
-    movieListItem.innerHTML = `
-    <button class="remove-fav" onclick="removeMovie(${i})">
-        <p class="shadow-2xl p-2"><i class="fa-solid fa-trash text-xl"></i></p>
-    </button>
-    `;
-    document.querySelector('.fav-list').appendChild(movieListItem);
+    for (var i = 0; i < arr.length; i++) {
+        let movieListItem = document.createElement('div');
+        movieListItem.dataset.id = i;
+        movieListItem.classList.add('fav-res-img');
+        movieListItem.style.backgroundImage = `url(${arr[i]})`;
+        movieListItem.classList.add('rounded-lg');
+        movieListItem.classList.add('flex');
+        movieListItem.classList.add('items-end');
+        movieListItem.innerHTML = `
+        <button class="remove-fav" onclick="removeMovie(${i})">
+            <p class="shadow-2xl p-2"><i class="fa-solid fa-trash text-xl"></i></p>
+        </button>
+        `;
+        document.querySelector('.fav-list').appendChild(movieListItem);
+        document.querySelector('#favourite-result').style.opacity = "1";
+    }
+}
+
+function exitFavPage() {
+    let arr = JSON.parse(localStorage.getItem("movies"));
+    if(arr == null || arr.length == 0) {
+        window.alert("You've not added any movie into the list yet.");
+        return;
+    }
+    document.querySelector('#favourite-result').style.opacity = "0";
+    document.querySelector('.fav-list').innerHTML = "";
+}
+
+function clearList() {
+    exitFavPage();
+    localStorage.clear();
 }
 
 function removeMovie(idx) {
+    let arr = JSON.parse(localStorage.getItem("movies"));
     arr.splice(idx, 1);
     localStorage.setItem("movies", JSON.stringify(arr));
-    console.log(localStorage);
+    document.querySelector('.fav-list').innerHTML = "";
+    if(arr.length == 0) {
+        document.querySelector('.fav-list').innerHTML = "";
+        document.querySelector('#favourite-result').style.opacity = "0";
+        exitFavPage();
+    }
+    showFavList();
 }
-
-document.querySelector('.clear-all').addEventListener('click', () => {
-    localStorage.clear();
-});
