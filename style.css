@@ -192,6 +192,11 @@ p span {
     color: rgb(235, 84, 84);
 }
 
+.footer {
+    margin: auto;
+    margin-top: 300px;
+}
+
 /* END OF FAVOURITE PAGE STYLE */
 
 /* MEDIA QUERIES */
