@@ -164,3 +164,4 @@ document.querySelector('.nav-brand-logo').addEventListener('click', () => {
     document.querySelector('.searchbar-logo').style.display = "flex";
     resultGrid.innerHTML = '';
 });
+// 
