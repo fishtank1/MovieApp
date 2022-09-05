@@ -62,7 +62,7 @@ function displayMovieList(movies){
                     <p>${movies[idx].Year}</p>
                     <p>${data.Actors}</p>
                 </div>
-                <p class="heart border" onclick="fav(this)"><i class="fa-solid fa-heart text-2xl"></i></p>
+                <p class="heart" onclick="fav(this)"><i class="fa-solid fa-heart text-2xl"></i></p>
                 `;
             });
         searchList.appendChild(movieListItem);
